@@ -108,13 +108,13 @@ where
     let ci: *const Vec<u8> = unsafe { addr_of!(INPUT) };
     #[allow(unsafe_code)]
     let oi: Option<&Vec<u8>> = unsafe { ci.as_ref() };
-    let i: &Vec<u8> = oi.ok_or_else(|| "invalid input")?;
+    let i: &Vec<u8> = oi.ok_or("invalid input")?;
 
     #[allow(unsafe_code)]
     let mi: *mut Vec<u8> = unsafe { addr_of_mut!(OUTPUT) };
     #[allow(unsafe_code)]
     let oo: Option<&mut Vec<u8>> = unsafe { mi.as_mut() };
-    let o: &mut Vec<u8> = oo.ok_or_else(|| "invalid output")?;
+    let o: &mut Vec<u8> = oo.ok_or("invalid output")?;
 
     convert_all(converter, bytes2float, integer2bytes, i, o);
 
