@@ -2,5 +2,5 @@
 
 cargo \
 	check \
-	--all-targets \
-	--all-features
+	--features wasm \
+	--target wasm32-unknown-unknown

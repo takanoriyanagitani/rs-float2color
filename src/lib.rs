@@ -1,3 +1,6 @@
+#[cfg(feature = "wasm")]
+pub mod wasm;
+
 #[derive(Default)]
 pub struct Rgba(pub u8, pub u8, pub u8, pub u8);
 
@@ -12,20 +15,33 @@ impl Rgba {
     }
 }
 
+impl From<Rgba> for u32 {
+    fn from(rgba: Rgba) -> Self {
+        let r: u32 = rgba.0.into();
+        let g: u32 = rgba.1.into();
+        let b: u32 = rgba.2.into();
+        let a: u32 = rgba.3.into();
+        r << 24 | g << 16 | b << 8 | a
+    }
+}
+
 pub trait FloatToRgba {
     fn convert(&self, f: f32) -> Rgba;
+    fn convert_many(&self, input: &[f32], output: &mut Vec<Rgba>) {
+        output.clear();
+        input.iter().for_each(|i: &f32| {
+            let converted: Rgba = self.convert(*i);
+            output.push(converted);
+        });
+    }
 }
 
-pub struct FloatToRgbaFn<F> {
-    float2rgba: F,
-}
-
-impl<F> FloatToRgba for FloatToRgbaFn<F>
+impl<F> FloatToRgba for F
 where
     F: Fn(f32) -> Rgba,
 {
     fn convert(&self, f: f32) -> Rgba {
-        (self.float2rgba)(f)
+        self(f)
     }
 }
 

@@ -3,6 +3,18 @@ name = "rs-float2color"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+crate-type = [
+    "cdylib",
+]
+
+[profile.release-wasm]
+inherits = "release"
+lto = true
+strip = true
+opt-level = 's'
+codegen-units = 16
+
 [lints.rust]
 unsafe_code = "deny"
 
@@ -10,3 +22,7 @@ unsafe_code = "deny"
 unwrap_used = "forbid"
 
 [dependencies]
+
+[features]
+
+wasm = []

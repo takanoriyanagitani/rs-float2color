@@ -2,4 +2,5 @@
 
 cargo \
 	doc \
-	--all-features
+	--all-features \
+	--target wasm32-unknown-unknown

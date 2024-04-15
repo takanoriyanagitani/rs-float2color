@@ -3,4 +3,4 @@
 cargo \
 	clippy \
 	--all-features \
-	--all-targets
+	--target wasm32-unknown-unknown
