@@ -5,6 +5,7 @@ use crate::{float2rgba_simple, FloatToRgba, Rgba};
 static mut INPUT: Vec<u8> = vec![];
 static mut OUTPUT: Vec<u8> = vec![];
 
+/// Gets the offset value of the INPUT buffer.
 #[allow(unsafe_code)]
 #[no_mangle]
 pub extern "C" fn i_ptr() -> *mut u8 {
