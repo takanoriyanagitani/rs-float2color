@@ -56,6 +56,7 @@ pub extern "C" fn i_zero() -> i32 {
     .unwrap_or(-1)
 }
 
+/// Gets the offset value of the OUTPUT buffer.
 #[allow(unsafe_code)]
 #[no_mangle]
 pub extern "C" fn o_ptr() -> *mut u8 {
