@@ -15,6 +15,7 @@ pub extern "C" fn i_ptr() -> *mut u8 {
         .unwrap_or_else(std::ptr::null_mut)
 }
 
+/// Grows the INPUT buffer.
 #[allow(unsafe_code)]
 #[no_mangle]
 pub extern "C" fn i_allocate(add_bytes_count: i32) -> i32 {
